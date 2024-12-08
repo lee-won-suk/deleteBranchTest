@@ -26,7 +26,7 @@ jobs:
           ignoring-branches: "develop,master,main"
           ignore-branches-pattern: "release/*"
           # FIXME: Set dry-run to false when you are ready to delete branches
-          dry-run: true
+          #dry-run: true
           #use-webhook: true
           # webhook-url: ${{ secrets.DISCORD_GITHUB_WEBHOOK_URL }}
           # webhook-type: "discord"
