@@ -36,5 +36,5 @@ jobs:
           #   If not, this branch will be deleted in ${{ env.DAYS_BEFORE_DELETE }} days.
           # delete-branch-message: >
           #   This branch was deleted because ${{ env.DAYS_BEFORE_DELETE }} days have passed since the last commit.
-      # - name: Print outputs
-      #   run: echo ${{ format('{0},{1}', toJSON(steps.stale.outputs.staled-branches), toJSON(steps.stale.outputs.deleted-branches)) }}
+      - name: Print outputs
+        run: echo ${{ format('{0},{1}', toJSON(steps.stale.outputs.staled-branches), toJSON(steps.stale.outputs.deleted-branches)) }}
