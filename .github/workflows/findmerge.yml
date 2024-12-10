@@ -18,12 +18,14 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+     # 1. 저장소 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
       - name: Display merged branch
         id: merged-branch
-        run: echo "::set-output name=target_branch::${{github.event.pull_request.head.ref}}"
+        run: echo "TARGET_BRANCH=${{github.event.pull_request.head.ref}}" >> $GITHUB_ENV
       - name: delete merged head branch
         run: |
-          for branch in ${{steps.merged-branch.outputs.target_branch}}; do
-            echo "Deleting branch: $branch"
-            git push origin --delete $branch || echo "Failed to delete branch $branch"
-          done
+            echo "Deleting branch: $TARGET_BRANCH"
+            git push origin --delete $TARGET_BRANCH || echo "Failed to delete branch $TARGET_BRANCH"
