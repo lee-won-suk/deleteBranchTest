@@ -1,0 +1,22 @@
+name: find merged branches
+
+#브랜치를 삭제하거나 수정할 수 있는 권한 부여
+permissions:
+  contents: write
+  
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    types:
+      - closed
+  # schedule:
+  #   - cron: "0 0 * * *"   
+jobs:
+  find-merged-branches:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display merged branch
+        run: echo github.event.pull_request.base.ref 
