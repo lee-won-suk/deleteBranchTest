@@ -19,4 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display merged branch
-        run: echo ${{github.event.pull_request.base.ref}} 
+        run: echo ${{github.event.pull_request.head.ref}} 
