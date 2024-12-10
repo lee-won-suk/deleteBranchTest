@@ -19,4 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display merged branch
-        run: echo ${{github.event.pull_request.head.ref}} 
+        id: merged-branch
+        run: echo "::set-output name=target_branch::${{github.event.pull_request.head.ref}}"
+      - name: delete merged head branch
+        run: |
+          for branch in ${{steps.merged-branch.outputs.target_branch}}; do
+            echo "Deleting branch: $branch"
+            git push origin --delete $branch || echo "Failed to delete branch $branch"
+          done
